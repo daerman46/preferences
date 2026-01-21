@@ -35,11 +35,11 @@ migrate_working_dir/
 pubspec.lock
 
 # Generated Flutter configuration files
-**/ios/Flutter/Debug.xcconfig
-**/ios/Flutter/Release.xcconfig
-**/macos/Flutter/Flutter-Debug.xcconfig
-**/macos/Flutter/Flutter-Release.xcconfig
-**/Flutter/GeneratedPluginRegistrant.swift
+ios/Flutter/Debug.xcconfig
+ios/Flutter/Release.xcconfig
+macos/Flutter/Flutter-Debug.xcconfig
+macos/Flutter/Flutter-Release.xcconfig
+macos/Flutter/GeneratedPluginRegistrant.swift
 
 # Symbolication related
 app.*.symbols
