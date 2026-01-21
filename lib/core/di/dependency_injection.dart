@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:preferences/presentation/controllers/preferences_controller.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/datasources/auth_local_datasource_impl.dart';
 import '../../data/datasources/interfaces/auth_local_datasource.dart';
@@ -17,10 +18,10 @@ import '../../domain/use_cases/settings/save_theme_use_case.dart';
 final serviceLocator = GetIt.instance;
 
 Future<void> injectDependency() async {
-  // TODO(): Agregar dependencias de preferences y secure storage
+  final sharedPreferences = await SharedPreferences.getInstance();
 
   serviceLocator.registerLazySingleton<SettingsLocalDatasource>(
-    () => SettingsLocalDatasourceImpl(),
+    () => SettingsLocalDatasourceImpl(sharedPreferences: sharedPreferences),
   );
   serviceLocator.registerLazySingleton<AuthLocalDatasource>(
     () => AuthLocalDatasourceImpl(),
