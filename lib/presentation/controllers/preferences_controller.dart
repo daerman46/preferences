@@ -11,10 +11,34 @@ class PreferencesController extends ChangeNotifier {
     required this.saveThemeUseCase,
     required this.getTokenUseCase,
     required this.saveTokenUseCase,
-  });
+  }) {
+    loadPreferences();
+  }
 
   final GetThemeUseCase getThemeUseCase;
   final SaveThemeUseCase saveThemeUseCase;
   final GetTokenUseCase getTokenUseCase;
   final SaveTokenUseCase saveTokenUseCase;
+
+  bool _isDarkMode = false;
+  bool _isLoading = false;
+
+  bool get isDarkMode => _isDarkMode;
+  bool get isLoading => _isLoading;
+
+  void loadPreferences() async {
+    _isLoading = true;
+    notifyListeners();
+
+    _isDarkMode = await getThemeUseCase();
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  void toggleDarkMode(bool isDarkMode) async {
+    _isDarkMode = isDarkMode;
+    notifyListeners();
+
+    await saveThemeUseCase(isDarkMode);
+  }
 }
