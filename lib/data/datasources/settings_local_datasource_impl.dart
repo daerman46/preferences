@@ -10,10 +10,10 @@ class SettingsLocalDatasourceImpl implements SettingsLocalDatasource {
   final SharedPreferences sharedPreferences;
 
   @override
-  Future<bool> getTheme() async =>
+  Future<bool> isDarkModeEnabled() async =>
       sharedPreferences.getBool(isDarkModeKey) ?? false;
 
   @override
-  Future<void> saveTheme(bool isDarkMode) async =>
-      await sharedPreferences.setBool(isDarkModeKey, isDarkMode);
+  Future<void> setDarkMode(bool isEnabled) async =>
+      await sharedPreferences.setBool(isDarkModeKey, isEnabled);
 }

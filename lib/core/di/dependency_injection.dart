@@ -35,10 +35,10 @@ Future<void> injectDependency() async {
   );
 
   serviceLocator.registerLazySingleton(
-    () => GetThemeUseCase(settingsRepository: serviceLocator()),
+    () => IsDarkModeEnabledUseCase(settingsRepository: serviceLocator()),
   );
   serviceLocator.registerLazySingleton(
-    () => SaveThemeUseCase(settingsRepository: serviceLocator()),
+    () => SetDarkModeUseCase(settingsRepository: serviceLocator()),
   );
   serviceLocator.registerLazySingleton(
     () => GetTokenUseCase(authRepository: serviceLocator()),
@@ -49,8 +49,8 @@ Future<void> injectDependency() async {
 
   serviceLocator.registerFactory(
     () => PreferencesController(
-      getThemeUseCase: serviceLocator(),
-      saveThemeUseCase: serviceLocator(),
+      isDarkModeEnabledUseCase: serviceLocator(),
+      setDarkModeUseCase: serviceLocator(),
       getTokenUseCase: serviceLocator(),
       saveTokenUseCase: serviceLocator(),
     ),

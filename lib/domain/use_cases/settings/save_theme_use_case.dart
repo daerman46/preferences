@@ -1,10 +1,10 @@
 import '../../repositories/settings_repository.dart';
 
-class SaveThemeUseCase {
-  SaveThemeUseCase({required this.settingsRepository});
+class SetDarkModeUseCase {
+  SetDarkModeUseCase({required this.settingsRepository});
 
   final SettingsRepository settingsRepository;
 
-  Future<void> call(bool isDarkMode) async =>
-      await settingsRepository.saveTheme(isDarkMode);
+  Future<void> call(bool isEnabled) async =>
+      await settingsRepository.setDarkMode(isEnabled);
 }

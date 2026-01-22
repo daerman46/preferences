@@ -1,9 +1,9 @@
 import '../../repositories/settings_repository.dart';
 
-class GetThemeUseCase {
-  GetThemeUseCase({required this.settingsRepository});
+class IsDarkModeEnabledUseCase {
+  IsDarkModeEnabledUseCase({required this.settingsRepository});
 
   final SettingsRepository settingsRepository;
 
-  Future<bool> call() async => await settingsRepository.getTheme();
+  Future<bool> call() async => await settingsRepository.isDarkModeEnabled();
 }

@@ -7,16 +7,16 @@ import '../../domain/use_cases/settings/save_theme_use_case.dart';
 
 class PreferencesController extends ChangeNotifier {
   PreferencesController({
-    required this.getThemeUseCase,
-    required this.saveThemeUseCase,
+    required this.isDarkModeEnabledUseCase,
+    required this.setDarkModeUseCase,
     required this.getTokenUseCase,
     required this.saveTokenUseCase,
   }) {
     loadPreferences();
   }
 
-  final GetThemeUseCase getThemeUseCase;
-  final SaveThemeUseCase saveThemeUseCase;
+  final IsDarkModeEnabledUseCase isDarkModeEnabledUseCase;
+  final SetDarkModeUseCase setDarkModeUseCase;
   final GetTokenUseCase getTokenUseCase;
   final SaveTokenUseCase saveTokenUseCase;
 
@@ -30,7 +30,7 @@ class PreferencesController extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    _isDarkMode = await getThemeUseCase();
+    _isDarkMode = await isDarkModeEnabledUseCase();
     _isLoading = false;
     notifyListeners();
   }
@@ -39,6 +39,6 @@ class PreferencesController extends ChangeNotifier {
     _isDarkMode = isDarkMode;
     notifyListeners();
 
-    await saveThemeUseCase(isDarkMode);
+    await setDarkModeUseCase(isDarkMode);
   }
 }
