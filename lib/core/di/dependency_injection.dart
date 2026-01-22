@@ -12,8 +12,8 @@ import '../../domain/repositories/auth_repository.dart';
 import '../../domain/repositories/settings_repository.dart';
 import '../../domain/use_cases/auth/get_token_use_case.dart';
 import '../../domain/use_cases/auth/save_token_use_case.dart';
-import '../../domain/use_cases/settings/get_theme_use_case.dart';
-import '../../domain/use_cases/settings/save_theme_use_case.dart';
+import '../../domain/use_cases/settings/is_dark_mode_enabled_use_case.dart';
+import '../../domain/use_cases/settings/set_dark_mode_use_case.dart';
 
 final serviceLocator = GetIt.instance;
 
