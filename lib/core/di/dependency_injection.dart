@@ -1,5 +1,4 @@
 import 'package:get_it/get_it.dart';
-import 'package:preferences/presentation/controllers/preferences_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/datasources/auth_local_datasource_impl.dart';
@@ -14,6 +13,7 @@ import '../../domain/use_cases/auth/get_token_use_case.dart';
 import '../../domain/use_cases/auth/save_token_use_case.dart';
 import '../../domain/use_cases/settings/is_dark_mode_enabled_use_case.dart';
 import '../../domain/use_cases/settings/set_dark_mode_use_case.dart';
+import '../../presentation/controllers/preferences_controller.dart';
 
 final serviceLocator = GetIt.instance;
 
