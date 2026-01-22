@@ -11,9 +11,7 @@ class PreferencesController extends ChangeNotifier {
     required this.setDarkModeUseCase,
     required this.getTokenUseCase,
     required this.saveTokenUseCase,
-  }) {
-    loadPreferences();
-  }
+  });
 
   final IsDarkModeEnabledUseCase isDarkModeEnabledUseCase;
   final SetDarkModeUseCase setDarkModeUseCase;

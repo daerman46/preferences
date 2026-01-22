@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => serviceLocator<PreferencesController>(),
+          create: (_) => serviceLocator<PreferencesController>()..loadPreferences(),
         ),
       ],
       child: Consumer<PreferencesController>(
