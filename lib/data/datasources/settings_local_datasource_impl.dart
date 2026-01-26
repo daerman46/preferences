@@ -2,7 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'interfaces/settings_local_datasource.dart';
 
-const String isDarkModeKey = 'isDarkMode';
+const String isDarkModeKey = 'isDarkModeKey';
 
 class SettingsLocalDatasourceImpl implements SettingsLocalDatasource {
   SettingsLocalDatasourceImpl({required this.sharedPreferences});
@@ -14,6 +14,6 @@ class SettingsLocalDatasourceImpl implements SettingsLocalDatasource {
       sharedPreferences.getBool(isDarkModeKey) ?? false;
 
   @override
-  Future<void> setDarkMode(bool isEnabled) async =>
-      await sharedPreferences.setBool(isDarkModeKey, isEnabled);
+  Future<void> setDarkMode(bool isEnabled) =>
+      sharedPreferences.setBool(isDarkModeKey, isEnabled);
 }

@@ -18,7 +18,8 @@ import '../../presentation/controllers/preferences_controller.dart';
 final serviceLocator = GetIt.instance;
 
 Future<void> injectDependency() async {
-  final sharedPreferences = await SharedPreferences.getInstance();
+  final SharedPreferences sharedPreferences =
+      await SharedPreferences.getInstance();
 
   serviceLocator.registerLazySingleton<SettingsLocalDatasource>(
     () => SettingsLocalDatasourceImpl(sharedPreferences: sharedPreferences),

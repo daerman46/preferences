@@ -5,6 +5,6 @@ class SetDarkModeUseCase {
 
   final SettingsRepository settingsRepository;
 
-  Future<void> call(bool isEnabled) async =>
-      await settingsRepository.setDarkMode(isEnabled);
+  Future<void> call(bool isEnabled) =>
+      settingsRepository.setDarkMode(isEnabled);
 }
