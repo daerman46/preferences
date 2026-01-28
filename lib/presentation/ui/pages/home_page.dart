@@ -14,7 +14,9 @@ class HomePage extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => serviceLocator<PreferencesController>()..loadPreferences(),
+          create: (_) => serviceLocator<PreferencesController>()
+            ..loadPreferences()
+            ..loadToken(),
         ),
       ],
       child: Consumer<PreferencesController>(
@@ -61,11 +63,43 @@ class _HomePage extends StatelessWidget {
               ),
             ],
           ),
+          if (preferencesController.isAuthenticated)
+            IconButton(
+              icon: const Icon(Icons.logout),
+              onPressed: preferencesController.deleteToken,
+            ),
         ],
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
+        centerTitle: true,
       ),
-      body: Center(child: Text(title)),
+      body: Consumer<PreferencesController>(
+        builder: (_, preferencesController, __) {
+          if (preferencesController.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          if (preferencesController.isAuthenticated) {
+            return Center(
+              child: Text(
+                'Authenticated with token:\n${preferencesController.token}',
+                textAlign: TextAlign.center,
+              ),
+            );
+          } else {
+            return Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  preferencesController.saveToken('sample_token_12345');
+                },
+                child: const Text('Login'),
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 }

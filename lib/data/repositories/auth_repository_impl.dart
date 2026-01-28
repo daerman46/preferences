@@ -6,4 +6,19 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl({required this.authLocalDatasource});
 
   final AuthLocalDatasource authLocalDatasource;
+  
+  @override
+  Future<void> deleteToken() {
+    return authLocalDatasource.deleteToken();
+  }
+  
+  @override
+  Future<String?> getToken() {
+    return authLocalDatasource.getToken();
+  }
+  
+  @override
+  Future<void> saveToken(String token) {
+    return authLocalDatasource.saveToken(token);
+  }
 }

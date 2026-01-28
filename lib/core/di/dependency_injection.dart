@@ -1,4 +1,6 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:preferences/domain/use_cases/auth/delete_token_use_case.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/datasources/auth_local_datasource_impl.dart';
@@ -21,11 +23,26 @@ Future<void> injectDependency() async {
   final SharedPreferences sharedPreferences =
       await SharedPreferences.getInstance();
 
+      final FlutterSecureStorage secureStorage = FlutterSecureStorage(
+      aOptions: const AndroidOptions(
+        /* biometricPromptTitle: 'Flutter Secure Storage Example',
+        biometricPromptSubtitle: 'Please unlock to access data.', */
+      ),
+      iOptions: IOSOptions(
+        synchronizable: true,
+        // accessControlFlags: [ // Enable for one or more access control features
+        //   AccessControlFlag.biometryCurrentSet,
+        //   AccessControlFlag.devicePasscode,
+        //   AccessControlFlag.and,
+        // ],
+      ),
+  );
+
   serviceLocator.registerLazySingleton<SettingsLocalDatasource>(
     () => SettingsLocalDatasourceImpl(sharedPreferences: sharedPreferences),
   );
   serviceLocator.registerLazySingleton<AuthLocalDatasource>(
-    () => AuthLocalDatasourceImpl(),
+    () => AuthLocalDatasourceImpl(secureStorage: secureStorage),
   );
 
   serviceLocator.registerLazySingleton<SettingsRepository>(
@@ -47,6 +64,9 @@ Future<void> injectDependency() async {
   serviceLocator.registerLazySingleton(
     () => SaveTokenUseCase(authRepository: serviceLocator()),
   );
+   serviceLocator.registerLazySingleton(
+    () => DeleteTokenUseCase(authRepository: serviceLocator()),
+  );
 
   serviceLocator.registerFactory(
     () => PreferencesController(
@@ -54,6 +74,7 @@ Future<void> injectDependency() async {
       setDarkModeUseCase: serviceLocator(),
       getTokenUseCase: serviceLocator(),
       saveTokenUseCase: serviceLocator(),
+      deleteTokenUseCase: serviceLocator(),
     ),
   );
 }

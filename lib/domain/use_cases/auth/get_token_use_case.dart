@@ -4,4 +4,6 @@ class GetTokenUseCase {
   GetTokenUseCase({required this.authRepository});
 
   final AuthRepository authRepository;
+
+  Future<String?> call() => authRepository.getToken();
 }
