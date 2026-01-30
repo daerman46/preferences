@@ -73,33 +73,23 @@ class _HomePage extends StatelessWidget {
         title: Text(title),
         centerTitle: true,
       ),
-      body: Consumer<PreferencesController>(
-        builder: (_, preferencesController, __) {
-          if (preferencesController.isLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
-          if (preferencesController.isAuthenticated) {
-            return Center(
+      body: preferencesController.isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : preferencesController.isAuthenticated
+          ? Center(
               child: Text(
                 'Authenticated with token:\n${preferencesController.token}',
                 textAlign: TextAlign.center,
               ),
-            );
-          } else {
-            return Center(
+            )
+          : Center(
               child: ElevatedButton(
                 onPressed: () {
                   preferencesController.saveToken('sample_token_12345');
                 },
                 child: const Text('Login'),
               ),
-            );
-          }
-        },
-      ),
+            ),
     );
   }
 }
