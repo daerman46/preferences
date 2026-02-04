@@ -8,7 +8,8 @@ class SettingsRepositoryImpl implements SettingsRepository {
   final SettingsLocalDatasource settingsLocalDatasource;
 
   @override
-  Future<bool> isDarkModeEnabled() => settingsLocalDatasource.isDarkModeEnabled();
+  Future<bool> isDarkModeEnabled() =>
+      settingsLocalDatasource.isDarkModeEnabled();
 
   @override
   Future<void> setDarkMode(bool isEnabled) =>
