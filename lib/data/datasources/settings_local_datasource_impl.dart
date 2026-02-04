@@ -1,7 +1,5 @@
 import 'interfaces/settings_local_datasource.dart';
 
-const String isDarkModeKey = 'isDarkModeKey';
-
 class SettingsLocalDatasourceImpl implements SettingsLocalDatasource {
   SettingsLocalDatasourceImpl();
 
