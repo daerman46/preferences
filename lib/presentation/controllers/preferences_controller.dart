@@ -28,7 +28,8 @@ class PreferencesController extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    _isDarkMode = await isDarkModeEnabledUseCase();
+    // TODO(): Add call to get dark mode preference
+
     _isLoading = false;
     notifyListeners();
   }
@@ -37,6 +38,6 @@ class PreferencesController extends ChangeNotifier {
     _isDarkMode = isDarkMode;
     notifyListeners();
 
-    await setDarkModeUseCase(isDarkMode);
+    // TODO(): Add call to save dark mode preference
   }
 }
