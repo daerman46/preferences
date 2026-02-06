@@ -35,6 +35,9 @@ Future<void> injectDependency() async {
         //   AccessControlFlag.and,
         // ],
       ),
+      wOptions: WindowsOptions(),
+      lOptions: LinuxOptions(  ) ,
+      mOptions: MacOsOptions(),
   );
 
   serviceLocator.registerLazySingleton<SettingsLocalDatasource>(
